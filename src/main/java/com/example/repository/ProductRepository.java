@@ -3,7 +3,10 @@ package com.example.repository;
 import com.example.domain.Product;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by root on 2016-10-15.
@@ -11,33 +14,39 @@ import java.util.List;
 @Repository
 public class ProductRepository implements Persistence<Product> {
 
+    Map<Integer, Product> mockDB = new HashMap<Integer, Product>();
+    Integer counter = 0;
+
     @Override
     public Product add(Product element) {
-        return null;
+        this.mockDB.put(counter, element);
+        counter++;
+        return element;
     }
 
     @Override
     public List<Product> find() {
-        return null;
+        return new ArrayList<Product>(mockDB.values());
     }
 
     @Override
     public Product get(Integer id) {
-        return null;
+        return this.mockDB.get(id);
     }
 
     @Override
     public Product update(Product element) {
-        return null;
+        return this.mockDB.put(element.getId(), element);
     }
 
     @Override
     public Integer remove(Integer id) {
-        return null;
+        return this.mockDB.remove(id).getId();
     }
 
     @Override
     public Integer clear() {
-        return null;
+        this.mockDB.clear();
+        return 1;
     }
 }

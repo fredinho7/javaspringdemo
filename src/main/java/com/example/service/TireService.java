@@ -1,6 +1,8 @@
 package com.example.service;
 
 import com.example.domain.Product;
+import com.example.repository.Persistence;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,35 +13,36 @@ import java.util.List;
 @Service
 public class TireService implements ProductService {
 
-    // Denna klass ska kopplas till ett repository .. ex MongoDB..
+    @Autowired
+    Persistence<Product> productRepository;
 
     @Override
     public Product addProduct(Product product) {
-        return null;
+        return this.productRepository.add(product);
     }
 
     @Override
     public List<Product> getProducts() {
-        return null;
+        return this.productRepository.find();
     }
 
     @Override
     public Product getProductBy(Integer id) {
-        return null;
+        return this.productRepository.get(id);
     }
 
     @Override
     public Product updateProduct(Product product) {
-        return null;
+        return this.productRepository.update(product);
     }
 
     @Override
     public Integer removeProduct(Integer id) {
-        return null;
+        return this.productRepository.remove(id);
     }
 
     @Override
     public Integer removeAllProdcuts() {
-        return null;
+        return this.productRepository.clear();
     }
 }
