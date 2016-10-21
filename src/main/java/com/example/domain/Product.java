@@ -1,12 +1,23 @@
 package com.example.domain;
 
+import java.math.BigDecimal;
+
 /**
  * Created by Linux. on 2016-10-15.
  */
 public class Product {
 
-    Integer id;
-    String prdName;
+    private Integer id;
+    private String name;
+    private String description;
+    private Double price;
+
+    public Product() {}
+
+    public Product(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 
     public Integer getId() {
         return id;
@@ -16,12 +27,28 @@ public class Product {
         this.id = id;
     }
 
-    public String getPrdName() {
-        return prdName;
+    public String getName() {
+        return name;
     }
 
-    public void setPrdName(String prdName) {
-        this.prdName = prdName;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     @Override
@@ -32,14 +59,16 @@ public class Product {
         Product product = (Product) o;
 
         if (id != null ? !id.equals(product.id) : product.id != null) return false;
-        return prdName != null ? prdName.equals(product.prdName) : product.prdName == null;
+        if (name != null ? !name.equals(product.name) : product.name != null) return false;
+        return description != null ? description.equals(product.description) : product.description == null;
 
     }
 
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (prdName != null ? prdName.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
     }
 
@@ -47,7 +76,8 @@ public class Product {
     public String toString() {
         return "Product{" +
                 "id=" + id +
-                ", prdName='" + prdName + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 }

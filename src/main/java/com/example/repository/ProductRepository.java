@@ -17,6 +17,14 @@ public class ProductRepository implements Persistence<Product> {
     Map<Integer, Product> mockDB = new HashMap<Integer, Product>();
     Integer counter = 0;
 
+    public ProductRepository() {
+        Product p1 = new Product("DEMO PROD 1", "DESC.");
+        p1.setId(1);
+        p1.setPrice(555.55);
+        this.mockDB.put(counter, p1);
+        counter++;
+    }
+
     @Override
     public Product add(Product element) {
         this.mockDB.put(counter, element);
